@@ -1,16 +1,17 @@
 #ifndef GENDER_H
 #define GENDER_H
 
-/**
- * @brief define your structure, enums, globally accessible variables, and function prototypes here.
- * The actual function implementation should be defined in the corresponding source file.
- *
- */
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-enum gender_t
-{
+enum gender_t {
     GENDER_MALE,
-    GENDER_FEMALE
+    GENDER_FEMALE,
+    GENDER_UNKNOWN 
 };
+
+const char* gender_to_text(enum gender_t gender);
+enum gender_t gender_to_value(const char *gender_text);
 
 #endif
