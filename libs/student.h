@@ -4,24 +4,22 @@
 #include "gender.h"
 #include "dorm.h"
 
-/**
- * @brief define your structure, enums, globally accessible variables, and function prototypes here.
- * The actual function implementation should be defined in the corresponding source file.
- *
- */
-typedef struct {
-    char id[10];
-    char name[50];
-    int year;
-    Gender gender;
-    char dorm[50];
-} Student;
+struct student_t {
+    char id[12];
+    char name[40];
+    char year[5];
+    enum gender_t gender;
+    struct dorm_t *dorm;
+    int flag;
+};
 
-Student create_student(char* input);
-void print_student(Student student);
-void print_student_detail(Student student);
-void assign_student(Dorm* dorms, Student* students, char* nim, char* asrama, int num_students, int num_dorms, int (find_id)(Student, int, char*), int (find_dorm)(Dorm, int, char*));
-void move_student(Dorm* dorms, Student* students, char* nim, char* asrama, int num_students, int num_dorms, int (find_id)(Student, int, char*), int (find_dorm)(Dorm, int, char*));
-void student_leave(Student* students, int num_students, char* nim);
+void student_print_detail(struct student_t *students, unsigned short int size, int is_initial_state);
+void student_print_all(struct student_t *students, unsigned short int size);
+struct student_t create_student(char *id, char *name, char *year, enum gender_t gender);
+void assign_student(struct student_t *students, struct dorm_t *dorms, unsigned short int student_idx, unsigned short int dorm_idx);
+unsigned short int get_index_student(struct student_t *students, unsigned short int size, char *id, int *found);
+void dorm_empty(struct student_t *students, struct dorm_t *dorms, unsigned short int dorm_idx, unsigned short int student_size);
+void move_student(struct student_t *students, struct dorm_t *dorms, struct dorm_t *new_dorm, unsigned short int student_idx, unsigned short int new_dorm_idx);
+void student_leave(struct student_t *students, struct dorm_t *dorms, unsigned short int student_idx);
 
 #endif
