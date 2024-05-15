@@ -9,27 +9,19 @@
  * The actual function implementation should be defined in the corresponding source file.
  *
  */
+typedef struct {
+    char id[10];
+    char name[50];
+    int year;
+    Gender gender;
+    char dorm[50];
+} Student;
 
-struct student_t
-{
-  char id[12];
-  char name[40];
-  char year[5];
-  enum gender_t gender;
-  struct dorm_t *dorm;
-};
+Student create_student(char* input);
+void print_student(Student student);
+void print_student_detail(Student student);
+void assign_student(Dorm* dorms, Student* students, char* nim, char* asrama, int num_students, int num_dorms, int (find_id)(Student, int, char*), int (find_dorm)(Dorm, int, char*));
+void move_student(Dorm* dorms, Student* students, char* nim, char* asrama, int num_students, int num_dorms, int (find_id)(Student, int, char*), int (find_dorm)(Dorm, int, char*));
+void student_leave(Student* students, int num_students, char* nim);
 
-struct student_t create_student(char *input);
-
-void print_student(struct student_t mhs);
-
-void print_student_detail(struct student_t mhs);
-
-void assign_student(struct dorm_t *drm, struct student_t *mhs, char *nim, char *asrama, int zstd, int zdrm, int find_id(char *nim, int zstd, struct student_t *mhs), int find_dorm(char *asrama, int zdrm, struct dorm_t *drm));
-
-int find_id(char *nim, int zstd, struct student_t *mhs);
-
-void move_student(struct dorm_t *drm, struct student_t *mhs, char *nim, char *asrama, int zstd, int zdrm, int find_id(char *nim, int zstd, struct student_t *mhs), int find_dorm(char *asrama, int zdrm, struct dorm_t *drm));
-
-void student_leave(struct student_t *mhs);
 #endif
